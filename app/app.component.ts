@@ -12,7 +12,7 @@ import {HeroService} from './hero.service';
               <li *ngFor="#hero of heroes" [class.selected]="hero === selectedHero" (click)="onSelect(hero)">
                  <span class="badge">{{hero.id}}</span> {{hero.name}}
               </li>
-            </ul>   
+            </ul>
             <my-hero-detail [hero]="selectedHero"></my-hero-detail>
            `,
     styles: [`
@@ -75,7 +75,7 @@ export class AppComponent implements OnInit {
     constructor(private _heroService:HeroService) {};
 
     getHeroes() {
-        this.heroes = this._heroService.getHeroes();
+        this._heroService.getHeroesSlowly().then(heroes => this.heroes = heroes);
     }
 
     ngOnInit(){
@@ -86,7 +86,3 @@ export class AppComponent implements OnInit {
         this.selectedHero = hero;
     }
 }
-
-
-
-
